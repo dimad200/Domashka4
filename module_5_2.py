@@ -24,11 +24,14 @@ class House:
 
 h1 = House('ЖК Эльбрус', 10)
 h2 = House('ЖК Акация', 20)
+# __str__
 print(h1)
-
 print(h2)
+# __len__
+print(len(h1))
+print(len(h2))
 
-izba = House("Деревня Гадюкино", 1)
-print(len(izba))
-print(str(izba))
-print(izba)
+# izba = House("хоромы главы муниципалитета в деревне 'Гадюкино'", 1)
+# print(len(izba))
+# print(izba)
+# print(str(izba))
