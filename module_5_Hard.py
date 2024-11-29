@@ -43,10 +43,10 @@ class UrTube:
             for i in range(len(self.users)):
                 if nickname in self.users[i].nickname:
                     print(f"Пользователь {nickname} уже существует")
+                    break
                 else:
-
                     a = User(nickname, password, age)
-                    self.users.append(a)
+                    self.users.append(User(nickname, password, age))
                     self.current_user = a.nickname
 
 
@@ -73,11 +73,22 @@ class UrTube:
             print("Войдите в аккаунт, чтобы смотреть видео")
 
         else:
-            for i in range(len(ur.videos)):
-                if watch_video == self.videos[i].title:
-                    for k in range(self.videos[i].time_now, self.videos[i].duration):
-                        print(range(self.videos[i].time_now, self.videos[i].duration))
-                        print("POKAZ")
+            # Инициализация age
+            age = 0
+            for i in range(len(self.users)):
+                if self.users[i].nickname == self.current_user:
+                    age = self.users[i].age
+            if age <18:
+                print("Вам нет 18 лет, пожалуйста покиньте страницу")
+
+            else:
+                for i in range(len(self.videos)):
+                    if watch_video == self.videos[i].title:
+                        for k in range(self.videos[i].time_now, self.videos[i].duration):
+                            print(k + 1, end=" ")
+                            sleep(1)
+                        print("Конец видео")
+                        self.videos[i].time_now = 0
 
 
 # Код для проверки:
@@ -96,9 +107,12 @@ ur.watch_video('Для чего девушкам парень программи
 #
 ur.register('vasya_pupkin', 'lolkekcheburek', 13)
 ####
-print(ur.current_user)
+# print(ur.current_user)
 ####
+ur.watch_video('Для чего девушкам парень программист?')
+ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
+ur.watch_video('Для чего девушкам парень программист?')
 
-# ur.watch_video('Для чего девушкам парень программист?')
-# ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
-# ur.watch_video('Для чего девушкам парень программист?')
+# Проверка входа в другой аккаунт
+ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
+print(ur.current_user)
