@@ -11,5 +11,16 @@ class Video:
         self.time_now=time_now
         self.adult_mode=adult_mode
 class  UrTube:
-    def __init__(self,users,videos,current_user):
-        self.users
+    def __init__(self,users,videos,current_user=User):
+        self.usersг=users
+        self.videos=videos
+        self.current_user=current_user
+
+    def log_in(self):
+        pass
+    def register(self,nickname, password, age):
+        pass
+    def log_out(self):
+        self.current_user=None
+    def add(self):
+        pass
