@@ -5,6 +5,9 @@ class User:
         self.nickname = nickname
         self.password = hash(password)
 
+    def __str__(self):
+        return str(f"Никнейм: {self.nickname}")
+
 
 class Video:
     def __init__(self, title, duration, time_now=0, adult_mode=False):
@@ -12,9 +15,9 @@ class Video:
         self.duration = duration
         self.time_now = time_now
         self.adult_mode = adult_mode
-    #
-    # def __str__(self):
-    #     return str(f"Название: {self.title}")
+
+    def __str__(self):
+        return str(f"Название: {self.title}")
 
 
 class UrTube:
