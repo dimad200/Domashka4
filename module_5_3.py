@@ -24,11 +24,11 @@ class House:
 
     def go_to(self,new_floor):
         # проверяю что значение new_floor не выходит за условия задачи
-        if  new_floor < 0 or new_floor > self.number_of_floors :
-            print("Такого этажа не существует")
-        else:
-            for i in (range(1,new_floor+1)):
+        if new_floor >= 1 and new_floor <= self.number_of_floors:
+            for i in (range(1, new_floor + 1)):
                 print(i)
+        else:
+            print("Такого этажа не существует")
 
 # Добавление новых методов
     def __eq__(self, other):
