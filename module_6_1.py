@@ -42,7 +42,6 @@ p2 = Fruit('Заводной апельсин')
 print(a1.name)
 print(p1.name)
 
-
 print(a1.alive)
 print(a2.fed)
 a1.eat(p1)
