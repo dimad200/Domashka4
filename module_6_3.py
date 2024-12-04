@@ -45,17 +45,19 @@ class AquaticAnimal(Animal):
         self._cords[2]=self._cords[2]-abs(dz)*self.speed/2
 
 class PoisonousAnimal(Animal):
+    def __init__(self,speed):
+        super().__init__(speed)
+
     _DEGREE_OF_DANGER = 8.
 
 
 class Duckbill(PoisonousAnimal, AquaticAnimal, Bird):
+    def __init__(self,speed):
+        super().__init__(speed)
     sound = "Click-click-click"
 
 
-
 db = Duckbill(10)
-
-print(Duckbill.mro())
 
 print(db.live)
 
