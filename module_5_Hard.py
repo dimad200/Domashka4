@@ -147,12 +147,3 @@ ur.add(v1, v2)
 # ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
 # print(ur.current_user)
 
-# ******
-# ur.register('vasya_pupkin', 'lolkekcheburek', 13)
-# print(ur.current_user)
-# ur.register('vasya_pu', 'lolkekcheburek', 13)
-# print(ur.current_user)
-# ur.register('vasya_pup', 'lolkekcheburek', 13)
-# print(ur.current_user)
-# ur.register('bayden_loh', 'lolkekcheburek', 13)
-# print(ur.current_user)
