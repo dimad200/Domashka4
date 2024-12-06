@@ -71,7 +71,7 @@ class UrTube:
         self.current_user = None
 
     def add(self, *args):
-        # если список видео пуст то просто добавляем
+        # если список видео пуст, то просто добавляем
         if len(self.videos)==0:
             for i in range(len(args)):
                 self.videos.append(args[i])
@@ -101,22 +101,24 @@ class UrTube:
             print("Войдите в аккаунт, чтобы смотреть видео")
 
         else:
-            # Инициализация age
-            age = 0
-            for i in range(len(self.users)):
-                if self.users[i].nickname == self.current_user:
-                    age = self.users[i].age
-            if age <18:
-                print("Вам нет 18 лет, пожалуйста покиньте страницу")
+            for i in range(len(self.videos)):
+                if watch_video == self.videos[i].title:
+                    # Проверка на 18+
+                    if self.videos[i].adult_mode==True:
+                        # Инициализация age
+                        age = 0
+                        for i in range(len(self.users)):
+                            if self.users[i].nickname == self.current_user:
+                                age = self.users[i].age
+                        if age < 18:
+                            print("Вам нет 18 лет, пожалуйста покиньте страницу")
+                            return
+                    for k in range(self.videos[i].time_now, self.videos[i].duration):
+                        print(k + 1, end=" ")
+                        sleep(1)
+                    print("Конец видео")
+                    self.videos[i].time_now = 0
 
-            else:
-                for i in range(len(self.videos)):
-                    if watch_video == self.videos[i].title:
-                        for k in range(self.videos[i].time_now, self.videos[i].duration):
-                            print(k + 1, end=" ")
-                            sleep(1)
-                        print("Конец видео")
-                        self.videos[i].time_now = 0
 
 
 # # Код для проверки:
@@ -128,22 +130,25 @@ ur.add(v1, v2)
 
 
 # # Проверка поиска
-# print(ur.get_videos('лучший'))
-# print(ur.get_videos('ПРОГ'))
-#
-# # Проверка на вход пользователя и возрастное ограничение
-# ur.watch_video('Для чего девушкам парень программист?')
-# #
-# ur.register('vasya_pupkin', 'lolkekcheburek', 13)
-# ####
-# print(ur.current_user)
-# ####
-# ur.watch_video('Для чего девушкам парень программист?')
-# ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
-#
-# # ur.watch_video('Для чего девушкам парень программист?')
-#
-# # Проверка входа в другой аккаунт
-# ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
-# print(ur.current_user)
+print(ur.get_videos('лучший'))
+print(ur.get_videos('ПРОГ'))
 
+# Проверка на вход пользователя и возрастное ограничение
+ur.watch_video('Для чего девушкам парень программист?')
+ur.register('vasya_pupkin', 'lolkekcheburek', 13)
+ur.watch_video('Для чего девушкам парень программист?')
+ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
+ur.watch_video('Для чего девушкам парень программист?')
+
+# Проверка входа в другой аккаунт
+ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
+print(ur.current_user)
+
+# Вывод в консоль
+# ['Лучший язык программирования 2024 года']
+# ['Лучший язык программирования 2024 года', 'Для чего девушкам парень программист?']
+# Войдите в аккаунт, чтобы смотреть видео
+# Вам нет 18 лет, пожалуйста покиньте страницу
+# 1 2 3 4 5 6 7 8 9 10 Конец видео
+# Пользователь vasya_pupkin уже существует
+# urban_pythonist
