@@ -1,3 +1,4 @@
+from pprint import pprint
 from time import sleep
 class User:
     def __init__(self, nickname, password, age):
@@ -29,7 +30,7 @@ class UrTube:
 
     def log_in(self, nickname, password):
         for i in range(len(self.users)):
-            if nickname in self.users[i].nickname:
+            if nickname == self.users[i].nickname:
                 if hash(password) == self.users[i].password:
                     print("Есть такой!")
                     self.current_user=nickname
@@ -43,14 +44,24 @@ class UrTube:
             self.users.append(a)
             self.current_user = a.nickname
         else:
+            user_in_list=False
             for i in range(len(self.users)):
-                if nickname in self.users[i].nickname:
-                    print(f"Пользователь {nickname} уже существует")
-                    break
-                else:
-                    a = User(nickname, password, age)
-                    self.users.append(User(nickname, password, age))
-                    self.current_user = a.nickname
+                if nickname == self.users[i].nickname:
+                    user_in_list=True
+            if user_in_list==True:
+                print(f"Пользователь {nickname} уже существует")
+            else:
+                a = User(nickname, password, age)
+                self.users.append(User(nickname, password, age))
+                self.current_user = a.nickname
+                print("Создал нового")
+                #
+                #     print(f"Пользователь {nickname} уже существует")
+                #     break
+                # else:
+                #     a = User(nickname, password, age)
+                #     self.users.append(User(nickname, password, age))
+                #     self.current_user = a.nickname
 
 
 
@@ -60,8 +71,23 @@ class UrTube:
         self.current_user = None
 
     def add(self, *args):
-        for i in range(len(args)):
-            self.videos.append(args[i])
+        # если список видео пуст то просто добавляем
+        if len(self.videos)==0:
+            for i in range(len(args)):
+                self.videos.append(args[i])
+        # проверка на наличие:
+        else:
+            video_in_list = False
+            for i in range(len(self.videos)):
+                for k in range(len(args)):
+                    if self.videos[i]==args[k]:
+                        print("такой есть")
+                        video_in_list=True
+
+            if video_in_list==False
+        else:
+            self.videos.append(args[k])
+
 
     def get_videos(self, vidio_search):
         result_search = []
@@ -94,28 +120,40 @@ class UrTube:
                         self.videos[i].time_now = 0
 
 
-# Код для проверки:
+# # Код для проверки:
 ur = UrTube()
 v1 = Video('Лучший язык программирования 2024 года', 200)
 v2 = Video('Для чего девушкам парень программист?', 10, adult_mode=True)
 # Добавление видео
 ur.add(v1, v2)
-
-# Проверка поиска
-print(ur.get_videos('лучший'))
-print(ur.get_videos('ПРОГ'))
-
-# Проверка на вход пользователя и возрастное ограничение
-ur.watch_video('Для чего девушкам парень программист?')
+ur.add(v1, v2)
+print(ur.videos)
+# # Проверка поиска
+# print(ur.get_videos('лучший'))
+# print(ur.get_videos('ПРОГ'))
 #
-ur.register('vasya_pupkin', 'lolkekcheburek', 13)
-####
+# # Проверка на вход пользователя и возрастное ограничение
+# ur.watch_video('Для чего девушкам парень программист?')
+# #
+# ur.register('vasya_pupkin', 'lolkekcheburek', 13)
+# ####
 # print(ur.current_user)
-####
-ur.watch_video('Для чего девушкам парень программист?')
-ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
-ur.watch_video('Для чего девушкам парень программист?')
+# ####
+# ur.watch_video('Для чего девушкам парень программист?')
+# ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
+#
+# # ur.watch_video('Для чего девушкам парень программист?')
+#
+# # Проверка входа в другой аккаунт
+# ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
+# print(ur.current_user)
 
-# Проверка входа в другой аккаунт
-ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
-print(ur.current_user)
+# ******
+# ur.register('vasya_pupkin', 'lolkekcheburek', 13)
+# print(ur.current_user)
+# ur.register('vasya_pu', 'lolkekcheburek', 13)
+# print(ur.current_user)
+# ur.register('vasya_pup', 'lolkekcheburek', 13)
+# print(ur.current_user)
+# ur.register('bayden_loh', 'lolkekcheburek', 13)
+# print(ur.current_user)
