@@ -77,16 +77,15 @@ class UrTube:
                 self.videos.append(args[i])
         # проверка на наличие:
         else:
-            video_in_list = False
-            for i in range(len(self.videos)):
-                for k in range(len(args)):
+
+            for i in range(len(args)):
+                video_in_list = False
+                for k in range(len(self.videos)):
                     if self.videos[i]==args[k]:
                         print("такой есть")
                         video_in_list=True
-
-            if video_in_list==False
-        else:
-            self.videos.append(args[k])
+                if video_in_list==False:
+                    self.videos.append(args[i])
 
 
     def get_videos(self, vidio_search):
@@ -126,8 +125,8 @@ v1 = Video('Лучший язык программирования 2024 года
 v2 = Video('Для чего девушкам парень программист?', 10, adult_mode=True)
 # Добавление видео
 ur.add(v1, v2)
-ur.add(v1, v2)
-print(ur.videos)
+
+
 # # Проверка поиска
 # print(ur.get_videos('лучший'))
 # print(ur.get_videos('ПРОГ'))
