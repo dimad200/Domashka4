@@ -28,8 +28,7 @@ class Shop():
             if str(i) in a:
                 print(f"Продукт {i.name} уже есть в магазине")
             else:
-                for s in products:
-                    file.write(str(s) + "\n")
+                file.write(str(i) + "\n")
         file.close()
 
 # Проверка:
