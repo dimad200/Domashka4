@@ -40,25 +40,6 @@ class Shop():
         file.close()
 
 
-
-
-
-
-
-        # for i in str_:
-        #     str_1=i.split(", ")
-        #     str_1=str_1[0]
-        #     print (str_1)
-        #     for k in products:
-        #         if str_1==k.name:
-        #             print("такой есть")
-        #             break
-        #         else:
-
-
-
-
-
             # Проверка:
 s1 = Shop()
 p1 = Product('Potato', 50.5, 'Vegetables')
