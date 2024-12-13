@@ -1,3 +1,4 @@
+
 class WordsFinder():
 
     def __init__(self,*files_name):
@@ -21,24 +22,32 @@ class WordsFinder():
 
     def find(self, word):
         self.word = word.lower()
-        znachenie = None
+
         slowar = self.get_all_words()
+        result = {}
         for k, v in slowar.items():
+            znachenie = 0
             for i in range(len(v)):
                 if self.word == v[i]:
                     znachenie = i + 1
-                    return {k: znachenie}
+                    break
+            result[k] = znachenie
+        return result
+
     def count(self, word):
         self.word = word.lower()
-        znachenie = 0
+
         slowar = self.get_all_words()
+        result = {}
         for k, v in slowar.items():
+            znachenie = 0
             for i in range(len(v)):
                 if self.word == v[i]:
-                    znachenie+=1
-        return {k: znachenie}
+                    znachenie += 1
+            result[k] = znachenie
+        return result
 # проверка
-finder2 = WordsFinder('test_file.txt')
-print(finder2.get_all_words()) # Все слова
+finder2 = WordsFinder('test_file.txt','test_file2.txt')
+# print(finder2.get_all_words()) # Все слова
 print(finder2.find('TEXT')) # 3 слово по счёту
 print(finder2.count('teXT')) # 4 слова teXT в тексте всего
