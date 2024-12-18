@@ -1,12 +1,14 @@
 def add_everything_up(a, b):
     try:
-        result= a+b
+        result = a + b
     except TypeError:
-        a=str(a)
-        b=str(b)
+        a = str(a)
+        b = str(b)
     finally:
         result = a + b
         return result
+
+
 # Проверка
 print(add_everything_up(123.456, 'строка'))
 
