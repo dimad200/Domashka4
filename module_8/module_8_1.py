@@ -8,6 +8,8 @@ def add_everything_up(a, b):
         result = a + b
 
     finally:
+        if type(result)== float:
+            result=round(result, 3)
         return result
 
 
