@@ -20,7 +20,8 @@ def sprite_map(file,size_x,size_y):
             sprites.append(a)
 
     return sprites
-
+a_1=0
+fps=60
 file ='sara 16x18 source.png'
 
 s2=sprite_map(file,16,18)
@@ -35,6 +36,7 @@ walk_down = [s2[2],s2[6],s2[10]]
 
 # Начальный кадр анимации
 current_frame = 0
+current_frame_1 = 0
 animation_speed = 1  # Чем меньше число, тем быстрее анимация
 
 # Начальные координаты спрайта
@@ -42,6 +44,7 @@ sprite_x = 400
 sprite_y = 300
 
 pygame.init()
+
 screen = pygame.display.set_mode((800, 600))
 done = False
 clock = pygame.time.Clock()
@@ -50,7 +53,9 @@ x=0
 # Скорость движения спрайта
 speed = 5
 direction = "right"
+sprite_image = walk_right[0]
 while not done:
+    a_1 = 0
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
@@ -64,19 +69,21 @@ while not done:
         sprite_y -= speed
 
     # Движение вниз
-    if keys[pygame.K_DOWN]:
+    elif keys[pygame.K_DOWN]:
         direction = "down"
         sprite_y += speed
 
     # Движение вправо
-    if keys[pygame.K_RIGHT]:
+    elif keys[pygame.K_RIGHT]:
         direction = "right"
         sprite_x += speed
 
     # Движение влево
-    if keys[pygame.K_LEFT]:
+    elif keys[pygame.K_LEFT]:
         direction = "left"
         sprite_x -= speed
+    else:
+        direction = "stop"
 
 
     # Ограничение координат внутри экрана
@@ -102,11 +109,7 @@ while not done:
     # new_image = pygame.transform.scale(image, (image.get_width() // 2, image.get_height() // 2)
 
     if direction == "right":
-        for a in  range(100):
-            if a==0:
-                sprite_image = walk_right[current_frame]
-            else:
-                sprite_image = sprite_image
+        sprite_image = walk_right[current_frame // animation_speed]
 
     elif direction == "up":
         sprite_image = walk_up[current_frame // animation_speed]
@@ -114,12 +117,20 @@ while not done:
     elif direction == "down":
         sprite_image = walk_down[current_frame // animation_speed]
 
-    else:
+    elif direction == "left":
         sprite_image = walk_left[current_frame // animation_speed]
+
+    else:
+        current_frame = (current_frame)
+        sprite_image = sprite_image
 
         # Отображение спрайта
     sprite_image_1=pygame.transform.scale(sprite_image, (sprite_image.get_width() * 4, sprite_image.get_height() * 4))
     screen.blit(sprite_image_1, (sprite_x, sprite_y))
 
+    for a in range(fps):
+        pass
+
     pygame.display.flip()
-    clock.tick(60)
+
+    clock.tick(fps)
