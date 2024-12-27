@@ -1,10 +1,14 @@
-# first = 'Мама мыла раму'
-# second = 'Рамена мало было'
-# a= list(map(lambda x,y:  list(x).pop(0)==list(y).pop(0), first, second))
-# print (a)
+# 1
+from random import choice
+
+first = 'Мама мыла раму'
+second = 'Рамена мало было'
+a= list(map(lambda x,y:  list(x).pop(0)==list(y).pop(0), first, second))
+print (a)
+
 # 2
 def get_advanced_writer(file_name):
-    print(file_name)
+
     def write_everything(*data_set):
         with open(file_name, 'w', encoding="utf-8") as file:
             for data in data_set:
@@ -14,21 +18,24 @@ def get_advanced_writer(file_name):
 write = get_advanced_writer('example.txt')
 write('Это строчка', ['А', 'это', 'уже', 'число', 5, 'в', 'списке'])
 
-# asa('Это строчка', ['А', 'это', 'уже', 'число', 5, 'в', 'списке'])
-# Замыкание:
-#
-# Внутри этой функции, напишите ещё одну - , где *data_set - параметр принимающий неограниченное количество данных любого типа.
-#
-# Логика write_everything заключается в добавлении в файл file_name всех данных из data_set в том же виде.
-#
-# Функция get_advanced_writer возвращает функцию write_everything.
-#
-#
-#
-# Данный код:
-#
-# write = get_advanced_writer('example.txt')
-#
-# write('Это строчка', ['А', 'это', 'уже', 'число', 5, 'в', 'списке'])
-#
-# Запишет данные в файл в таком виде:
+# 3
+
+class MysticBall():
+    def __init__(self,*words):
+        self.words=words
+
+
+    def __call__(self):
+        self.word=choice(self.words)
+        return self.word
+
+    def __str__(self):
+        return self.__call__()
+
+first_ball = MysticBall('Да', 'Нет', 'Наверное')
+print(first_ball())
+print(first_ball())
+print(first_ball())
+
+
+
