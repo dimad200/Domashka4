@@ -111,7 +111,6 @@ while not done:
 
     if direction == "right":
         current_frame = (pygame.time.get_ticks() // 50) % 3
-        print(pygame.time.get_ticks())
         sprite_image = walk_right[current_frame ]
 
     elif direction == "up":
