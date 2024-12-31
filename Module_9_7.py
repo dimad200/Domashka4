@@ -22,5 +22,5 @@ def sum_three(a,b,c):
 
 
 
-print(sum_three(1,3,3))
+print(sum_three(2,3,6))
 
