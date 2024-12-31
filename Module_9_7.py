@@ -1,5 +1,5 @@
 def is_prime(func):
-    def new_func(*args):
+    def wrapper(*args):
         # print(*args)
         res=func(*args)
         for i in range(2, res):
@@ -13,7 +13,7 @@ def is_prime(func):
 
         # if res
         return res
-    return new_func
+    return wrapper
 
 @is_prime
 def sum_three(a,b,c):
