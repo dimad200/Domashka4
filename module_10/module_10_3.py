@@ -2,9 +2,6 @@ from random import randint
 import threading
 import time
 
-from setuptools.command.build_ext import if_dl
-
-
 class Bank(threading.Thread):
     def __init__(self):
         self.lock = threading.Lock()
@@ -12,14 +9,13 @@ class Bank(threading.Thread):
 
     def deposit(self):
         for i in range(100):
-            rand = randint(50, 400)
+            rand = randint(50, 500)
             self.balance += rand
             print(f"\u001b[0;32mПополнение: {rand}. Баланс: {self.balance}.\u001b[0m")
             if self.balance >= 500 and self.lock.locked():
                 self.lock.release()
             time.sleep(0.001)
-
-
+            # print(self.lock.locked())
 
     def take(self):
         for i in range(100):
@@ -31,14 +27,15 @@ class Bank(threading.Thread):
             else:
                 print(f"\u001b[0;31mЗапрос отклонён, недостаточно средств  \u001b[0m")
                 self.lock.acquire()
+            # print(f"\u001b[0;31m{self.lock.locked()} !!!\u001b[0m")
             time.sleep(0.001)
 
 
 bk = Bank()
-th1 = threading.Thread(target=Bank.take, args=(bk,))
-# th2 = threading.Thread(target=Bank.take, args=(bk,))
+th1 = threading.Thread(target=Bank.deposit, args=(bk,))
+th2 = threading.Thread(target=Bank.take, args=(bk,))
 th1.start()
-# th2.start()
+th2.start()
 th1.join()
-# th2.join()
+th2.join()
 print(f'Итоговый баланс: {bk.balance}')
