@@ -15,7 +15,7 @@ class Bank(threading.Thread):
             if self.balance >= 500 and self.lock.locked():
                 self.lock.release()
             time.sleep(0.001)
-            # print(self.lock.locked())
+
 
     def take(self):
         for i in range(100):
@@ -27,7 +27,6 @@ class Bank(threading.Thread):
             else:
                 print(f"\u001b[0;31mЗапрос отклонён, недостаточно средств  \u001b[0m")
                 self.lock.acquire()
-            # print(f"\u001b[0;31m{self.lock.locked()} !!!\u001b[0m")
             time.sleep(0.001)
 
 
