@@ -1,8 +1,6 @@
 import threading
-from os import lstat
 from random import randint
 from time import sleep
-
 from queue import Queue
 
 
