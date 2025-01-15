@@ -7,7 +7,7 @@ def is_prime(func):
         for i in range(2, result-1):
             if result % i == 0:
                 j = j +1
-        if j <= 0:
+        if j == 0:
             print('Простое')
         else:
             print('Составное')
