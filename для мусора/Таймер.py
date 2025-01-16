@@ -6,9 +6,13 @@ from pystray import MenuItem as item
 import os
 import sys
 from PIL import Image
+import threading
 
 global vremya
+global tik_tak_start
 vremya=0
+tik_tak_start=0
+
 
 window = tkinter.Tk()
 window.title('Бесплатный таймер')
@@ -49,6 +53,9 @@ label = tkinter.Label(window, text="Нажми кнопку", font=("Arial", 14)
 label.grid(column=1, row=12)
 
 def on_button_click():
+    global tik_tak_start
+
+    global vremya
     try:
         num1 = int(entry1.get())
     except:
@@ -59,14 +66,28 @@ def on_button_click():
         num2=0
     label.config(text=f"таймер на {num1}минут, {num2}секнд!")
     vremya=num1*60+num2
-    while vremya > 0:
-        vremya -= 1
-        vremya_label.config(text=f"Осталось: {vremya}")
-        print(vremya)
-        sleep(1)
-        window.update()
-        if (vremya == 0):
-            tkinter.messagebox.showinfo("Время вышло!", "Время вышло!")
+    # tik_tak(vremya)
+    tik_tak_start=1
+    # threading.Thread(target=tik_tak,args=(vremya,)).start()
+
+def tik_tak():
+    global tik_tak_start
+    global vremya
+    pusk=1
+    while pusk:
+        print(tik_tak_start, vremya, pusk)
+
+        while vremya > 0 and tik_tak_start!=0:
+            vremya -= 1
+            vremya_label.config(text=f"Осталось: {vremya}")
+            print(vremya)
+            sleep(1)
+            window.update()
+            if (vremya == 0):
+                tkinter.messagebox.showinfo("Время вышло!", "Время вышло!")
+                tik_tak_start=0
+                pusk=0
+                print(tik_tak_start, vremya, pusk)
 
 
 button = tkinter.Button(window, text="Старт", command=on_button_click)
@@ -85,7 +106,7 @@ entry2.grid(column=2, row=3)
 
 vremya_label = tkinter.Label(window, text=f"осталось: {vremya}", font=("Arial", 14))
 vremya_label.grid(column=1, row=5)
-
+threading.Thread(target=tik_tak,args=()).start()
 window.protocol('WM_DELETE_WINDOW', withdraw_window)
 window.mainloop()
 
