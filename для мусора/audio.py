@@ -55,10 +55,9 @@ with open("Only_mp4_mp3.txt", "r" ,encoding="utf-8") as file:
             path = pathlib.Path(mp4)
             mp4=path.name
             os.chdir(path.parent)
-            print(mp3, mp4,path.parent)
-
-
-
+            print(mp3)
+            print(mp4)
+            print(path.parent)
 
             audio = mp.AudioFileClip(mp3)
             video = mp.VideoFileClip(mp4)
@@ -69,7 +68,6 @@ with open("Only_mp4_mp3.txt", "r" ,encoding="utf-8") as file:
             mp4=None
             mp3=None
             print(s3)
-
             final_video.write_videofile(s3)
 
 
