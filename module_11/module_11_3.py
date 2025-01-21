@@ -39,9 +39,9 @@ def introspection_info(obj):
 
 a=Test_class("первый",3,9)
 print(a.matematika())
-#
-# pprint(introspection_info(a))
-#
-# pprint(introspection_info("a"))
+
+pprint(introspection_info(a))
+
+pprint(introspection_info("a"))
 
 pprint(introspection_info(inspect))
