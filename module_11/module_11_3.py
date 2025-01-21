@@ -17,20 +17,19 @@ class Test_class():
 
 def introspection_info(obj):
     info = {}
-    info["type"] = type(obj)
-    module=[]
-    att=[]
-    method=[]
+
+
     try:
-        obj_type = type(obj).__name_
+        obj_type = type(obj).__name__
     except:
-        obj_type = type(obj)
+        # obj_type = type(obj)
+        pass
 
     attributes=[attr_name for attr_name in dir(obj) if not callable(getattr(obj,attr_name)) and not inspect.ismodule(getattr(obj,attr_name))]
     methods=[ attr_name for attr_name in dir(obj) if callable(getattr(obj,attr_name))]
     # module=[attr_name for attr_name in dir(obj) if not attr_name.startswith("__") and inspect.ismodule(getattr(obj,attr_name))]
-    module = [attr_name for attr_name in dir(obj) if inspect.ismodule(getattr(obj, attr_name))]
-
+    module = obj.__class__.__module__
+    info["type"] = obj_type
     info["attributes"]=attributes
     info["method"] = methods
     info["module"]=module
