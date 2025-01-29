@@ -1,7 +1,7 @@
 import unittest
 
-import runner_and_tournament
-from module_12.runner_and_tournament import Runner
+from runner import *
+
 
 
 class RunnerTest(unittest.TestCase):
