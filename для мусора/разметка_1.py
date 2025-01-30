@@ -205,7 +205,6 @@ entry1 = tkinter.Entry(window)
 # entry1.place(x=0, y=20,  height=20, width=200)
 entry1.grid(column=1, row=2,sticky='ew')
 
-# print(entry1.)
 url_get_text = tkinter.Label(window, text='адрес файла ')
 url_get_text.grid(column=1, row=3)
 
