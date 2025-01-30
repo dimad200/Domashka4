@@ -52,9 +52,11 @@ def withdraw_window():
 label = tkinter.Label(window, text="Нажми кнопку", font=("Arial", 14))
 label.grid(column=1, row=12)
 
+pusk=0
 def on_button_click():
     global tik_tak_start
-
+    global pusk
+    pusk=1
     global vremya
     try:
         num1 = int(entry1.get())
@@ -69,10 +71,13 @@ def on_button_click():
     # tik_tak(vremya)
     tik_tak_start=1
     # threading.Thread(target=tik_tak,args=(vremya,)).start()
+    print(tik_tak_start, vremya, pusk)
+    threading.Thread(target=tik_tak, args=()).start()
 
 def tik_tak():
     global tik_tak_start
     global vremya
+    global pusk
     pusk=1
     while pusk:
         print(tik_tak_start, vremya, pusk)
@@ -84,7 +89,10 @@ def tik_tak():
             sleep(1)
             window.update()
             if (vremya == 0):
-                tkinter.messagebox.showinfo("Время вышло!", "Время вышло!")
+
+                window.attributes('-topmost', 1)  # Raising root above all other windows
+                tkinter.messagebox.showinfo("Время вышло!", "Время вышло!", )
+                window.attributes('-topmost', 0)
                 tik_tak_start=0
                 pusk=0
                 print(tik_tak_start, vremya, pusk)
@@ -106,7 +114,7 @@ entry2.grid(column=2, row=3)
 
 vremya_label = tkinter.Label(window, text=f"осталось: {vremya}", font=("Arial", 14))
 vremya_label.grid(column=1, row=5)
-threading.Thread(target=tik_tak,args=()).start()
+
 window.protocol('WM_DELETE_WINDOW', withdraw_window)
 window.mainloop()
 

@@ -14,28 +14,30 @@ class RunnerTest(unittest.TestCase):
         self.runer_3 = Runner("Ник", 3)
 
     def test_1(self):
-        t_1 = Tournament(90, self.runer_1, self.runer_3)
-        itog = t_1.start()
+        test_ = Tournament(90, self.runer_1, self.runer_3)
+        itog = test_.start()
         max_key = 0
-        print(itog.items())
+
         for i in itog.keys():
             max_key = (int(i) if max_key < int(i) else max_key)
         self.assertTrue(itog[max_key] == "Ник")
+
         RunnerTest.all_results["test_1"] = itog
 
 
     def test_2(self):
-        t_1 = Tournament(90, self.runer_2, self.runer_3)
-        itog = t_1.start()
+        test_ = Tournament(90, self.runer_2, self.runer_3)
+        itog = test_.start()
         max_key = 0
         for i in itog.keys():
             max_key = (int(i) if max_key < int(i) else max_key)
         self.assertTrue(itog[max_key] == "Ник")
+
         RunnerTest.all_results["test_2"] = itog
 
     def test_3(self):
-        t_1 = Tournament(90, self.runer_1,self.runer_2, self.runer_3)
-        itog = t_1.start()
+        test_ = Tournament(90, self.runer_1, self.runer_2, self.runer_3)
+        itog = test_.start()
         max_key = 0
         for i in itog.keys():
             max_key = (int(i) if max_key < int(i) else max_key)
@@ -43,7 +45,14 @@ class RunnerTest(unittest.TestCase):
         RunnerTest.all_results["test_3"] = itog
 
     @classmethod
+
     def tearDownClass(cls):
+
         for i in cls.all_results.keys():
-            print(f"{(cls.all_results[i])}")
-        print("nrn ",cls.all_results[1])
+            # print(cls.all_results[i])
+            for k in cls.all_results[i]:
+                print(f"{k}: {cls.all_results[i][k].name}", end=" ")
+            print("",end="\n")
+
+
+
