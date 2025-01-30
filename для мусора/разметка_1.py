@@ -3,13 +3,14 @@ from pprint import pprint
 from urllib.parse import urlparse
 import requests
 import xml.etree.ElementTree as ET
-
+# from tkinter import *
 
 window = tkinter.Tk()
 window.title('прога для удобства')
 window.geometry("500x450")
 window.attributes('-topmost', True)
-
+window.grid_columnconfigure(0,minsize=0)
+window.grid_columnconfigure(1,minsize=350,pad=5)
 
 
 
@@ -201,45 +202,45 @@ text = tkinter.Label(window, text='имя для файла ')
 text.grid(column=1, row=1)
 
 entry1 = tkinter.Entry(window)
-entry1.grid(column=1, row=2)
+# entry1.place(x=0, y=20,  height=20, width=200)
+entry1.grid(column=1, row=2,sticky='ew')
 
+# print(entry1.)
 url_get_text = tkinter.Label(window, text='адрес файла ')
 url_get_text.grid(column=1, row=3)
 
 url_get_ = tkinter.Entry(window)
-url_get_.grid(column=1, row=4)
+url_get_.grid(column=1, row=4,sticky='ew')
 
 folder_text = tkinter.Label(window, text='папка результата')
 folder_text.grid(column=1, row=5)
 
 folder_get = tkinter.Entry(window)
-folder_get.grid(column=1, row=6)
+folder_get.grid(column=1, row=6,sticky='ew')
 
 button = tkinter.Button(window, text="Получить", command=get_xml_click )
-button.grid(column=2, row=3)
+button.grid(column=3, row=3)
 
 xml_for_analiz_folrer= tkinter.Label(window, text='папка для анализа')
 xml_for_analiz_folrer.grid(column=1, row=7)
 
 xml_folder_get = tkinter.Entry(window)
-xml_folder_get.grid(column=1, row=8)
+xml_folder_get.grid(column=1, row=8,sticky='ew')
 
 xml_for_analiz= tkinter.Label(window, text='файл для анализа')
 xml_for_analiz.grid(column=1, row=9)
 
-
-
 xml_get = tkinter.Entry(window)
-xml_get.grid(column=1, row=10)
+xml_get.grid(column=1, row=10,sticky='ew')
 # xml_get.config(width=200, height=5)
 # вставка начальных данных
 xml_get.insert(0, r"D:\IT\купс\1\Введение Строки байты и кодировки.xml")
 
 button_2 = tkinter.Button(window, text="Проанализировать", command=xml_analiz )
-button_2.grid(column=2, row=7)
+button_2.grid(column=3, row=7)
 
 button_2 = tkinter.Button(window, text="Скачать", command=lambda: dowenload(xml_get.get()),)
-button_2.grid(column=2, row=8)
+button_2.grid(column=3, row=8)
 
 
 
